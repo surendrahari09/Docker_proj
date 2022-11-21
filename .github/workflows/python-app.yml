@@ -27,8 +27,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Install flask
-     run: |
+        sudo apt install python3-venv
+        mkdir flask_app && cd flask_app
+        python3 -m venv venv
+        source venv/bin/activate
+        pip install Flask
+
           sudo apt install python3-venv
           mkdir flask_app && cd flask_app
           python3 -m venv venv

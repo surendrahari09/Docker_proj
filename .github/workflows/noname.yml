@@ -35,6 +35,9 @@ jobs:
         pip install Flask
         python -m flask --version
         
-    - name: Test with flask
+    - name: Test with pwd
       run: |
         pwd
+      - name: ls
+      run: |
+      ls

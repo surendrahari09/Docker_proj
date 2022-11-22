@@ -40,4 +40,4 @@ jobs:
           #docker stop demoapp
           #Remove all untagged images
           docker system  prune -a -f
-          docker run -d -p 80:80 --name demoapp -it surendrahari09/flask:2
+          docker run -d -p 5000:5000 --name demoapp -it surendrahari09/flask:2

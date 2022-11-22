@@ -38,6 +38,4 @@ jobs:
     - name: Test with pwd
       run: |
         pwd
-      - name: ls
-      run: |
-      ls
+        ls

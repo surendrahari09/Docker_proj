@@ -3,7 +3,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-name: AWS GITHUB-DCOKERHUB-EC2 Deployment
+name: AWS GITHUB-DocKERHUB-EC2 Deployment
 jobs:
   deploy:
     name: Deploy
@@ -20,8 +20,8 @@ jobs:
       id: build-image
       env:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-        DOCKER_REPOSITORY: "demo-web-app-ec2"
-        IMAGE_TAG: "latest"
+        DOCKER_REPOSITORY: "flask"
+        IMAGE_TAG: "2"
       run: |
         # Build a docker container and push it to DOCKERHUB
         docker build -t $DOCKERHUB_USERNAME/$DOCKER_REPOSITORY:$IMAGE_TAG .
@@ -30,14 +30,14 @@ jobs:
     - name: executing remote ssh commands using ssh key
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.HOST }}
+        host: ${{ secrets.HOST_DNS }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
+        key: ${{ secrets.EC2_SSH_KEY }}
         port: ${{ secrets.PORT }}
         script: |
-          docker pull mohanmul789/demo-web-app-ec2:latest
+          docker pull surendrahari09/flask:2
           #Stop container
           docker stop demoapp
           #Remove all untagged images
           docker system  prune -a -f
-          docker run -d -p 80:80 --name demoapp -it mohanmul789/demo-web-app-ec2
+          docker run -d -p 80:80 --name demoapp -it surendrahari09/flask:2

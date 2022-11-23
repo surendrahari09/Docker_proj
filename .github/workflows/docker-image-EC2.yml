@@ -3,7 +3,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-name: AWS GITHUB-DOcKERHUB-EC2 Deploment
+name: AWS GITHUB-DOcKERHUB-EC2 Deployement
 jobs:
   deploy:
     name: Deploy
